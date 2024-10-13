@@ -149,8 +149,18 @@ const findMostCommonLetter = (user) => {
     mostCommonLetters[mostCommonLetterFrequency].sort()[0];
   const outputLetterObj = {};
   outputLetterObj[mostCommonLetter] = mostCommonLetterFrequency;
-  console.log(outputLetterObj);
+  // console.log(outputLetterObj);
   return outputLetterObj;
 };
 
-userWithNicknamesAndAges.forEach(findMostCommonLetter);
+const addMostCommonLetterProperty = (user) => {
+  const mostCommonLetterProperty = findMostCommonLetter(user);
+  user = { ...user, mostCommonLetterProperty };
+  return user;
+};
+
+const usersWithCompleteData = userWithNicknamesAndAges.map(
+  addMostCommonLetterProperty
+);
+
+console.log(usersWithCompleteData);
