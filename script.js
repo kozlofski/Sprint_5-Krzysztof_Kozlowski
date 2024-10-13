@@ -57,12 +57,24 @@ const addNickName = (user) => {
     
 inputData.forEach(addNickName);
     
-// console.log(inputData);
-
 // TASK 02
 
 const hasNickName = (user) => {
     return 'nickname' in user;
 };
 
-console.log(inputData.filter(hasNickName));
+const calculateAge = (user) => {
+    const numberOfLetters = user.firstName.length + user.lastName.length;
+    return age = numberOfLetters;
+};
+
+const addAge = (user) => {
+    if(hasNickName(user)) {
+        const age = calculateAge(user);
+        user.age = age;
+    }
+};
+
+inputData.forEach(addAge);
+
+console.log(inputData);
