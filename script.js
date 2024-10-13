@@ -70,7 +70,7 @@ const addNickName = (user) => {
 };
 
 const allUsersSomeWithNicknames = inputData.map(addNickName);
-console.log(allUsersSomeWithNicknames);
+// console.log(allUsersSomeWithNicknames);
 
 // TASK 02
 
@@ -98,12 +98,12 @@ const calculateAge = (user, index) => {
 };
 
 const addAge = (user, index) => {
-  if (hasNickName(user)) {
-    const age = calculateAge(user, index);
-    user.age = age;
-  }
+  const age = calculateAge(user, index);
+  user.age = age;
 };
 
-inputData.forEach(addAge);
+const userWithNicknamesAndAges = allUsersSomeWithNicknames.filter(hasNickName);
 
-// console.log(inputData);
+userWithNicknamesAndAges.forEach(addAge);
+
+console.log(userWithNicknamesAndAges);
