@@ -106,8 +106,6 @@ const userWithNicknamesAndAges = allUsersSomeWithNicknames.filter(hasNickName);
 
 userWithNicknamesAndAges.forEach(addAge);
 
-// console.log(userWithNicknamesAndAges);
-
 // TASK 03
 
 const countLetterFrequencies = (user) => {
@@ -141,16 +139,15 @@ const findMostCommonLetter = (user) => {
       mostCommonLetterFrequency = letterFrequency;
       mostCommonLetters[letterFrequency] = [];
       mostCommonLetters[letterFrequency].push(letter);
-    } else if (letters[letter] === mostCommonLetterFrequency) {
+    } else if (letterFrequency === mostCommonLetterFrequency) {
       mostCommonLetters[letterFrequency].push(letter);
     }
   }
   const mostCommonLetter =
     mostCommonLetters[mostCommonLetterFrequency].sort()[0];
-  const outputLetterObj = {};
-  outputLetterObj[mostCommonLetter] = mostCommonLetterFrequency;
-  // console.log(outputLetterObj);
-  return outputLetterObj;
+  const mostCommonLetterObject = {};
+  mostCommonLetterObject[mostCommonLetter] = mostCommonLetterFrequency;
+  return mostCommonLetterObject;
 };
 
 const addMostCommonLetterProperty = (user) => {
