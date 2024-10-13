@@ -26,7 +26,7 @@ const inputData = [
     },
   ];
   
-  const checkName = (user) => {
+  const userNameIsProper = (user) => {
     return typeof user.firstName === 'string' &&
     typeof user.lastName === 'string' &&
     user.firstName.length >= 3 &&
@@ -43,19 +43,20 @@ const inputData = [
   const createNick = (user) => {
     const firstHalf = user.firstName.slice(-3).toLowerCase().split('').reverse().join('');
     const secondHalf = user.lastName.slice(0, 3).toLowerCase().split('').reverse().join('');
-    const nick = `${firstHalf}${secondHalf}`;
-    return capitalizeFirstLetter(nick);
+    const nickLowCase = `${firstHalf}${secondHalf}`;
+    return capitalizeFirstLetter(nickLowCase);
   };
 
-  const properNames = inputData.filter(checkName);
+  const properNames = inputData.filter(userNameIsProper); //delete this later
 
-  const nickNames = properNames.map(createNick);
-
-  console.log(nickNames);
-
-//   const addNickName = (user) => {
-
-//   }
-
-//   inputData.forEach(addNickName);
-
+  const nickNames = properNames.map(createNick); // delete this later
+  
+  const addNickName = (user) => {
+      if(userNameIsProper(user)) {
+          user.nickName = createNick(user);
+        }
+    }
+    
+inputData.forEach(addNickName);
+    
+console.log(inputData);
