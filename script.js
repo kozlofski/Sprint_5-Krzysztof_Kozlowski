@@ -145,14 +145,16 @@ const findMostCommonLetter = (user) => {
   }
   const mostCommonLetter =
     mostCommonLetters[mostCommonLetterFrequency].sort()[0];
+
   const mostCommonLetterObject = {};
-  mostCommonLetterObject[mostCommonLetter] = mostCommonLetterFrequency;
+  mostCommonLetterObject["letter"] = mostCommonLetter;
+  mostCommonLetterObject["count"] = mostCommonLetterFrequency;
   return mostCommonLetterObject;
 };
 
 const addMostCommonLetterProperty = (user) => {
-  const mostCommonLetterProperty = findMostCommonLetter(user);
-  user = { ...user, mostCommonLetterProperty };
+  const mostCommonLetter = findMostCommonLetter(user);
+  user = { ...user, mostCommonLetter };
   return user;
 };
 
