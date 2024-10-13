@@ -61,12 +61,16 @@ const createNick = (user) => {
 };
 
 const addNickName = (user) => {
+  const outputUser = { ...user };
+
   if (userNameIsProper(user)) {
-    user.nickname = createNick(user);
+    outputUser.nickname = createNick(user);
   }
+  return outputUser;
 };
 
-inputData.forEach(addNickName);
+const allUsersSomeWithNicknames = inputData.map(addNickName);
+console.log(allUsersSomeWithNicknames);
 
 // TASK 02
 
@@ -102,4 +106,4 @@ const addAge = (user, index) => {
 
 inputData.forEach(addAge);
 
-console.log(inputData);
+// console.log(inputData);
