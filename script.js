@@ -26,37 +26,43 @@ const inputData = [
     },
   ];
   
-  const userNameIsProper = (user) => {
-    return typeof user.firstName === 'string' &&
-    typeof user.lastName === 'string' &&
-    user.firstName.length >= 3 &&
-    user.lastName.length >= 3;
-  };
+// TASK 01
 
-  const capitalizeFirstLetter = inputString => {
-    if(!inputString) {
-        return '';
+const userNameIsProper = (user) => {
+return typeof user.firstName === 'string' &&
+typeof user.lastName === 'string' &&
+user.firstName.length >= 3 &&
+user.lastName.length >= 3;
+};
+
+const capitalizeFirstLetter = inputString => {
+if(!inputString) {
+    return '';
+}
+return `${inputString[0].toUpperCase()}${inputString.slice(1)}`
+};
+
+const createNick = (user) => {
+const firstHalf = user.firstName.slice(-3).toLowerCase().split('').reverse().join('');
+const secondHalf = user.lastName.slice(0, 3).toLowerCase().split('').reverse().join('');
+const nickLowCase = `${firstHalf}${secondHalf}`;
+return capitalizeFirstLetter(nickLowCase);
+};
+
+const addNickName = (user) => {
+    if(userNameIsProper(user)) {
+        user.nickname = createNick(user);
     }
-    return `${inputString[0].toUpperCase()}${inputString.slice(1)}`
-  };
-
-  const createNick = (user) => {
-    const firstHalf = user.firstName.slice(-3).toLowerCase().split('').reverse().join('');
-    const secondHalf = user.lastName.slice(0, 3).toLowerCase().split('').reverse().join('');
-    const nickLowCase = `${firstHalf}${secondHalf}`;
-    return capitalizeFirstLetter(nickLowCase);
-  };
-
-  const properNames = inputData.filter(userNameIsProper); //delete this later
-
-  const nickNames = properNames.map(createNick); // delete this later
-  
-  const addNickName = (user) => {
-      if(userNameIsProper(user)) {
-          user.nickName = createNick(user);
-        }
-    }
+}
     
 inputData.forEach(addNickName);
     
-console.log(inputData);
+// console.log(inputData);
+
+// TASK 02
+
+const hasNickName = (user) => {
+    return 'nickname' in user;
+};
+
+console.log(inputData.filter(hasNickName));
