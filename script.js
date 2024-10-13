@@ -33,6 +33,29 @@ const inputData = [
     user.lastName.length >= 3;
   };
 
+  const capitalizeFirstLetter = inputString => {
+    if(!inputString) {
+        return '';
+    }
+    return `${inputString[0].toUpperCase()}${inputString.slice(1)}`
+  };
+
+  const createNick = (user) => {
+    const firstHalf = user.firstName.slice(-3).toLowerCase().split('').reverse().join('');
+    const secondHalf = user.lastName.slice(0, 3).toLowerCase().split('').reverse().join('');
+    const nick = `${firstHalf}${secondHalf}`;
+    return capitalizeFirstLetter(nick);
+  };
+
   const properNames = inputData.filter(checkName);
 
-  console.log(properNames);
+  const nickNames = properNames.map(createNick);
+
+  console.log(nickNames);
+
+//   const addNickName = (user) => {
+
+//   }
+
+//   inputData.forEach(addNickName);
+
