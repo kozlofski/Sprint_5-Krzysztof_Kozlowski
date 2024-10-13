@@ -124,36 +124,33 @@ const countLetterFrequencies = (user) => {
       }
     }
   }
-  console.log(letters);
   return letters;
 };
 
 const findMostCommonLetter = (user) => {
-  console.log(`${user.firstName}`);
   const letters = countLetterFrequencies(user);
-  let mostCommonLetters = {};
+  const mostCommonLetters = {};
   let mostCommonLetterFrequency = 0;
 
   for (letter in letters) {
     const letterFrequency = letters[letter];
     if (letterFrequency > mostCommonLetterFrequency) {
-      console.log(
-        `Litera ${letter} wystepuje ${letterFrequency}x, dotychczas najczestsza: ${mostCommonLetterFrequency}`
-      );
-      mostCommonLetters = {};
+      if (Object.keys(mostCommonLetters).length !== 0) {
+        delete mostCommonLetters[mostCommonLetterFrequency];
+      }
       mostCommonLetterFrequency = letterFrequency;
       mostCommonLetters[letterFrequency] = [];
       mostCommonLetters[letterFrequency].push(letter);
     } else if (letters[letter] === mostCommonLetterFrequency) {
       mostCommonLetters[letterFrequency].push(letter);
-      console.log(
-        `Litera ${letter} wystepuje ${letterFrequency}x, dotychczas najczestsza: ${mostCommonLetterFrequency}`
-      );
     }
-    mostCommonLetters[mostCommonLetterFrequency].sort();
   }
-  console.log(mostCommonLetters);
-  console.log(`najczestsza: ${mostCommonLetters[mostCommonLetterFrequency]}`);
+  const mostCommonLetter =
+    mostCommonLetters[mostCommonLetterFrequency].sort()[0];
+  const outputLetterObj = {};
+  outputLetterObj[mostCommonLetter] = mostCommonLetterFrequency;
+  console.log(outputLetterObj);
+  return outputLetterObj;
 };
 
 userWithNicknamesAndAges.forEach(findMostCommonLetter);
