@@ -106,4 +106,54 @@ const userWithNicknamesAndAges = allUsersSomeWithNicknames.filter(hasNickName);
 
 userWithNicknamesAndAges.forEach(addAge);
 
-console.log(userWithNicknamesAndAges);
+// console.log(userWithNicknamesAndAges);
+
+// TASK 03
+
+const countLetterFrequencies = (user) => {
+  const letters = {};
+  for (property in user) {
+    if (property === "age") {
+      continue;
+    }
+    for (letter of user[property].toLowerCase().split("")) {
+      if (letter in letters) {
+        letters[letter]++;
+      } else {
+        letters[letter] = 1;
+      }
+    }
+  }
+  console.log(letters);
+  return letters;
+};
+
+const findMostCommonLetter = (user) => {
+  console.log(`${user.firstName}`);
+  const letters = countLetterFrequencies(user);
+  let mostCommonLetters = {};
+  let mostCommonLetterFrequency = 0;
+
+  for (letter in letters) {
+    const letterFrequency = letters[letter];
+    if (letterFrequency > mostCommonLetterFrequency) {
+      console.log(
+        `Litera ${letter} wystepuje ${letterFrequency}x, dotychczas najczestsza: ${mostCommonLetterFrequency}`
+      );
+      mostCommonLetters = {};
+      mostCommonLetterFrequency = letterFrequency;
+      mostCommonLetters[letterFrequency] = [];
+      mostCommonLetters[letterFrequency].push(letter);
+    } else if (letters[letter] === mostCommonLetterFrequency) {
+      mostCommonLetters[letterFrequency].push(letter);
+      console.log(
+        `Litera ${letter} wystepuje ${letterFrequency}x, dotychczas najczestsza: ${mostCommonLetterFrequency}`
+      );
+    }
+    mostCommonLetters[mostCommonLetterFrequency].sort();
+  }
+  console.log(mostCommonLetters);
+  console.log(`najczestsza: ${mostCommonLetters[mostCommonLetterFrequency]}`);
+};
+
+userWithNicknamesAndAges.forEach(findMostCommonLetter);
